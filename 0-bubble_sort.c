@@ -1,4 +1,5 @@
 #include "sort.h"
+#include <stdio.h>
 
 /**
  * bubble_sort - sorts int array w/ bubble sort; prints array after each step
@@ -11,11 +12,8 @@ void bubble_sort(int *array, size_t size)
 	int *curr, *next, *reset, tmp;
 	size_t i;
 
-	if (size < 2)
-	{
-		print_array(array, size);
+	if (size < 2 || array == NULL)
 		return;
-	}
 
 	curr = array;
 	next = array + 1;
