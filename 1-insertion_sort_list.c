@@ -7,7 +7,8 @@
  **/
 void insertion_sort_list(listint_t **list)
 {
-	*list = insertion_sort(*list);
+	if (list)
+		*list = insertion_sort(*list);
 }
 
 /**
