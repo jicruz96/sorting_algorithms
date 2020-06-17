@@ -1,5 +1,5 @@
 #include "sort.h"
-#include <stdio.h>
+#include "swap_nodes.c"
 
 /**
  * insertion_sort_list - wrapper for insertion sort
@@ -12,36 +12,30 @@ void insertion_sort_list(listint_t **list)
 
 /**
  * insertion_sort - sorts a list of ints using insertion sort, prints each step
- * @i: pointer to node
+ * @l: pointer to node
  * Return: head of list
  **/
-listint_t *insertion_sort(listint_t *i)
+listint_t *insertion_sort(listint_t *l)
 {
 	static listint_t *head;
+	listint_t *tmp;
 
-	if (i == NULL)
-		return (i);
+	if (l == NULL)
+		return (l);
 
-	if (i->prev == NULL)
-		head = i;
+	if (l->prev == NULL)
+		head = l;
 
-	if (i->prev == NULL || i->n > i->prev->n)
-		return (insertion_sort(i->next));
+	tmp = l->next;
 
-	if (i->next)
-		i->next->prev = i->prev;
-	i->prev->next = i->next;
-	i->next = i->prev;
-	i->prev = i->prev->prev;
-	i->next->prev = i;
-	if (i->prev)
-		i->prev->next = i;
+	while (head != l && l->n < l->prev->n)
+	{
+		swap_nodes(l);
+		if (l->next == head)
+			head = l;
+		print_list(head);
+	}
 
-	if (i->next == head)
-		head = i;
-
-	print_list(head);
-	insertion_sort(i);
-
+	insertion_sort(tmp);
 	return (head);
 }

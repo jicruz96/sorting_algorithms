@@ -25,5 +25,6 @@ void quick_sort(int *array, size_t size);
 void print_list(const listint_t *list);
 void insertion_sort_list(listint_t **list);
 listint_t *insertion_sort(listint_t *h);
+void swap_nodes(listint_t *l);
 
 #endif /*SORT_H*/
