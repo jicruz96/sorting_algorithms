@@ -28,8 +28,8 @@ void merge_sort_helper(int *array, size_t size, int *tmp)
 		return;
 
 	half_size = size / 2;
-	merge_sort(array, half_size);
-	merge_sort(array + half_size, size - half_size);
+	merge_sort_helper(array, half_size, tmp);
+	merge_sort_helper(array + half_size, size - half_size, tmp);
 	merger(array, half_size, array + half_size, size - half_size, tmp);
 }
 
