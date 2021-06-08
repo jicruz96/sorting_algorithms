@@ -9,6 +9,19 @@
  */
 void merge_sort(int *array, size_t size)
 {
+	int *tmp = malloc(sizeof(int) * size);
+
+	merge_sort_helper(array, size, tmp);
+	free(tmp);
+}
+/**
+ * merge_sort_helper - helper for merge_sort
+ * @array: array of integers
+ * @size: size of array
+ * @tmp: tmp pointer
+ */
+void merge_sort_helper(int *array, size_t size, int *tmp)
+{
 	size_t half_size;
 
 	if (size <= 1)
@@ -17,8 +30,9 @@ void merge_sort(int *array, size_t size)
 	half_size = size / 2;
 	merge_sort(array, half_size);
 	merge_sort(array + half_size, size - half_size);
-	merger(array, half_size, array + half_size, size - half_size);
+	merger(array, half_size, array + half_size, size - half_size, tmp);
 }
+
 
 /**
  * merger - helper for merge_sort
@@ -27,11 +41,11 @@ void merge_sort(int *array, size_t size)
  * @size_l: size of left array
  * @r: right array
  * @size_r: size of right array
+ * @tmp: tmp array
  */
-void merger(int *l, size_t size_l, int *r, size_t size_r)
+void merger(int *l, size_t size_l, int *r, size_t size_r, int *tmp)
 {
 	size_t i = 0, j = 0, k = 0;
-	int *tmp = malloc((size_l) * sizeof(int));
 
 	for (i = 0; i < size_l; i++)
 		tmp[i] = l[i];
@@ -54,5 +68,4 @@ void merger(int *l, size_t size_l, int *r, size_t size_r)
 
 	printf("[Done]: ");
 	print_array(l, size_l + size_r);
-	free(tmp);
 }
