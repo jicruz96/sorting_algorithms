@@ -27,4 +27,9 @@ void insertion_sort_list(listint_t **list);
 listint_t *insertion_sort(listint_t *h);
 void swap_nodes(listint_t *l);
 
+void merger(int *l, size_t size_l, int *r, size_t size_r);
+void merge_sort(int *array, size_t size);
+
+
+
 #endif /*SORT_H*/
